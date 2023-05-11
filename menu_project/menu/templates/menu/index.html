@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+{% load menu_tags %}
 <head>
     <meta charset="UTF-8">
-    <title>{{ title }}</title>
+    <title>'Главное меню'</title>
 </head>
 <body>
-    <h1> {{ title }}</h1>
+{% draw_menu 'Main'%}
+{% draw_menu 'Sub' %}
+
 </body>
 </html>

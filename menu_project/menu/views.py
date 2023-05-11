@@ -1,9 +1,9 @@
-from django.shortcuts import render, get_object_or_404
-from .models import Menu
+from django.shortcuts import render
 
-def index(request):
-    title = get_object_or_404(Menu)
-    context = {
-        'title': title,
-    }
-    return render(request, 'menu/index.html', context)
+
+def index(request, Item=None):
+    return render(request, 'menu/index.html')
+
+
+def menu(request):
+    return render(request, 'menu/sub.html')

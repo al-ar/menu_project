@@ -1,10 +1,18 @@
 from django.contrib import admin
+from mptt.admin import MPTTModelAdmin
+from .models import Menu, MenuItem
 
-from .models import Menu
 
+class MenuItemMPTTModelAdmin(MPTTModelAdmin):
+    mptt_level_indent = 20
+    prepopulated_fields = {'slug': ('title',)}
 
-# class MenuAdmin(admin.ModelAdmin):
-#     list_display = ('pk', 'titles',)
-#     empty_value_display = '-пусто-'
+    def save_model(self, request, obj, form, change):
+        obj.slug = obj.menu_name.name + '/' + obj.slug
+        obj.save()
 
-admin.site.register(Menu)
+class MenuMPTTModelAdmin(MPTTModelAdmin):
+    mptt_level_indent = 20
+
+admin.site.register(Menu, MenuMPTTModelAdmin)
+admin.site.register(MenuItem, MenuItemMPTTModelAdmin)

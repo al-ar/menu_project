@@ -1,0 +1,11 @@
+{% load menu_tags %}
+{% load static %}
+
+<p>{{menu_name}}</p>
+
+<ul>
+
+    {% autoescape off %}
+    {% render_menu menu_tree%}
+    {% endautoescape %}
+</ul>
